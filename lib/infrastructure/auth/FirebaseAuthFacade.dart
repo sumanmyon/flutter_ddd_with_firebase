@@ -79,7 +79,8 @@ class FirebaseAuthFacade implements IAuthFacade {
         idToken: googleAuth.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(authCredential);
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(authCredential);
 
       return right(unit);
     } on PlatformException catch (e) {
