@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ddd_with_firebase/Injection.dart';
+import 'package:injectable/injectable.dart';
 
 void main() {
+  configureInjection(Environment.prod);
   runApp(const MyApp());
 }
 
@@ -17,13 +20,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<void> signIn({
-  required String email,
-  required String password,
-}) async{
-
 }
 
 //flutter clean; flutter pub get; flutter pub run build_runner build --delete-conflicting-outputs

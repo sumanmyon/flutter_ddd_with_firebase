@@ -5,7 +5,9 @@ import 'package:flutter_ddd_with_firebase/application/auth/sign_in_form/SignInFo
 import 'package:flutter_ddd_with_firebase/domain/auth/AuthFailure.dart';
 import 'package:flutter_ddd_with_firebase/domain/auth/IAuthFacade.dart';
 import 'package:flutter_ddd_with_firebase/domain/auth/ValueObjects.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade iAuthFacade;
 
