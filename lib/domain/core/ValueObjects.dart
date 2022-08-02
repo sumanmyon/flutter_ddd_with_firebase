@@ -8,6 +8,8 @@ abstract class ValueObjects<T> {
 
   const ValueObjects();
 
+  bool isValid() => value.isRight();
+
   @override
   List<Object> get props => [value];
 
