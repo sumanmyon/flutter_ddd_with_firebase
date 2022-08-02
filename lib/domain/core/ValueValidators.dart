@@ -16,7 +16,7 @@ class ValueValidators {
   }
 
   static Either<ValueFailure<String>, String> validatePassword(String input) {
-    if (input.length > 6) {
+    if (input.length >= 6) {
       return right(input);
     } else {
       return left(ValueFailure.shortPassword(failedValue: input));

@@ -12,8 +12,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade iAuthFacade;
 
   SignInFormBloc(this.iAuthFacade) : super(SignInFormState.initial()) {
-    on<SignInFormEvent>((event, emit) {
-      event.map(
+    on<SignInFormEvent>((event, emit) async {
+      await event.map(
         emailChanged: (e) {
           emit(state.copyWith(
             emailAddress: EmailAddress(e.emailStr),
@@ -26,15 +26,15 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             authFailureOrSuccessOrOption: none(),
           ));
         },
-        registerWithEmailAndPasswordPressed: (e) async* {
+        registerWithEmailAndPasswordPressed: (e) async {
           //Flutter Firebase & DDD Course [5] – Sign-In Form Logic (Bloc)
-          yield* _performActionOnAuthFacadeEmailAndPassword(
+          await _performActionOnAuthFacadeEmailAndPassword(
             forwardedCall: iAuthFacade.registerWithEmailAndPassword,
           );
         },
-        signInWithEmailAndPasswordPressed: (e) async* {
+        signInWithEmailAndPasswordPressed: (e) async {
           //Flutter Firebase & DDD Course [5] – Sign-In Form Logic (Bloc)
-          yield* _performActionOnAuthFacadeEmailAndPassword(
+          await _performActionOnAuthFacadeEmailAndPassword(
             forwardedCall: iAuthFacade.signInWithEmailAndPassword,
           );
         },
@@ -53,13 +53,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     });
   }
 
-  Stream<SignInFormState> _performActionOnAuthFacadeEmailAndPassword({
+  Future _performActionOnAuthFacadeEmailAndPassword({
     required Future<Either<AuthFailure, Unit>> Function({
       required EmailAddress emailAddress,
       required Password password,
     })
         forwardedCall,
-  }) async* {
+  }) async {
     Either<AuthFailure, Unit>? failureOrSuccess;
     final isEmailValid = state.emailAddress.isValid();
     final isPasswordValid = state.password.isValid();

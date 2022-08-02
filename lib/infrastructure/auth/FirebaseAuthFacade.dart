@@ -69,20 +69,26 @@ class FirebaseAuthFacade implements IAuthFacade {
       if (googleUser == null) {
         return left(const AuthFailure.cancelledByUser());
       }
+      var user = googleUser.displayName;
+
       final googleAuth = await googleUser.authentication;
       if (kDebugMode) {
+        print(
+          "user= ${user}",
+        );
         print(
           "accessToken= ${googleAuth.accessToken}\nidToken= ${googleAuth.idToken}",
         );
       }
 
       final authCredential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
       );
 
-      final userCredential =
-          await FirebaseAuth.instance.signInWithCredential(authCredential);
+      // final userCredential =
+      //     await FirebaseAuth.instance.signInWithCredential(authCredential);
+      await FirebaseAuth.instance.signInWithCredential(authCredential);
 
       return right(unit);
     } on PlatformException catch (e) {
