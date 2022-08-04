@@ -21,6 +21,7 @@ dependencies:
   injectable: 1.5.3
   another_flushbar: 1.10.29
   uuid: 3.0.6
+  auto_route: 4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ dev_dependencies:
   freezed: 2.1.0+1
   lint: ^1.10.0
   injectable_generator: 1.5.4
+  auto_route_generator: 4.2.1
 
 
 flutter:
