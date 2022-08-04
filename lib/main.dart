@@ -11,4 +11,5 @@ Future<void> main() async {
   runApp(const AppWidget());
 }
 
-//flutter clean; flutter pub get; flutter pub run build_runner build --delete-conflicting-outputs
+// flutter clean; flutter pub get; flutter pub run build_runner build --delete-conflicting-outputs
+// flutter pub run build_runner watch --delete-conflicting-outputs
