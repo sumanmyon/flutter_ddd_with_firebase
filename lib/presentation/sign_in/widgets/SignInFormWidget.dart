@@ -8,14 +8,20 @@ import 'package:flutter_ddd_with_firebase/application/auth/sign_in_form/SignInFo
 class SignInFormWidget extends StatelessWidget {
   const SignInFormWidget({Key? key}) : super(key: key);
 
+  final Key key = const Key("form");
+
   @override
   Widget build(BuildContext context) {
+    print("I am SignInFormWidget");
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
+        print("I am SignInFormWidget listener");
+
         state.authFailureOrSuccessOrOption.fold(
           () {},
           (either) => either.fold(
             (f) {
+              // FlushbarHelper.createError(message: "Failed");
               FlushbarHelper.createError(
                 message: f.map(
                   cancelledByUser: (_) => 'Cancelled',
@@ -24,19 +30,23 @@ class SignInFormWidget extends StatelessWidget {
                   inValidEmailAndPasswordCombination: (_) =>
                       'Invalid email and password combination',
                 ),
-              );
+              ).show(context);
             },
             (r) {},
           ),
         );
       },
       builder: (context, state) {
+        print("I am SignInFormWidget builder");
+
         return Form(
-          autovalidateMode: AutovalidateMode.always,
+          key: key,
+          //autovalidateMode: AutovalidateMode.always,
           onChanged: () {
-            state.showErrorMessages;
+            //state.showErrorMessages = true;
           },
           child: ListView(
+            padding: const EdgeInsets.all(8),
             children: [
               const Text(
                 "📝",
@@ -52,19 +62,25 @@ class SignInFormWidget extends StatelessWidget {
                   labelText: "Email",
                 ),
                 autocorrect: false,
-                onChanged: (value) => BlocProvider.of<SignInFormBloc>(context)
-                    .add(SignInFormEvent.emailChanged(value)),
-                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
-                    .state
-                    .emailAddress
-                    .value
-                    .fold(
-                      (f) => f.maybeMap(
-                        invalidEmail: (_) => "Invalid Email",
-                        orElse: () => null,
-                      ),
-                      (r) => null,
-                    ),
+                onChanged: (value) {
+                  print("I am SignInFormWidget onChanged");
+                  return BlocProvider.of<SignInFormBloc>(context)
+                      .add(SignInFormEvent.emailChanged(value));
+                },
+                validator: (_) {
+                  print("I am SignInFormWidget validator");
+                  return BlocProvider.of<SignInFormBloc>(context)
+                      .state
+                      .emailAddress
+                      .value
+                      .fold(
+                        (f) => f.maybeMap(
+                          invalidEmail: (_) => "Invalid Email",
+                          orElse: () => null,
+                        ),
+                        (r) => null,
+                      );
+                },
               ),
               const SizedBox(height: 8),
               TextFormField(
@@ -131,6 +147,10 @@ class SignInFormWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              if (state.isSubmitting) ...[
+                const SizedBox(height: 8),
+                const LinearProgressIndicator(value: null),
+              ]
             ],
           ),
         );

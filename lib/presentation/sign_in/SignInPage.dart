@@ -15,7 +15,10 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
+    print("I am _SignInPageState");
+
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Sign In"),
       ),

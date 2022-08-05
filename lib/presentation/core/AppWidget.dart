@@ -7,6 +7,8 @@ import 'package:flutter_ddd_with_firebase/application/auth/AuthEvent.dart';
 import 'package:flutter_ddd_with_firebase/presentation/routes/Routes.dart';
 import 'package:flutter_ddd_with_firebase/presentation/sign_in/SignInPage.dart';
 
+final routes = Routes();
+
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _AppWidgetState extends State<AppWidget> {
           ),
         ),
         builder: (_, __) {
-          var routes = Routes();
+          //print("I am AppWidget builder");
           return MaterialApp.router(
             routerDelegate: AutoRouterDelegate(routes),
             routeInformationParser: routes.defaultRouteParser(),

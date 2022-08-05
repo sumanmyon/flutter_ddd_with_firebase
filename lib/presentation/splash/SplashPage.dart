@@ -12,16 +12,18 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        print("I am SplashPage listener");
+
         state.map(
-          initial: (_) {},
+          initial: (_) {
+            print("I am initial");
+          },
           authenticated: (_) {
-            try {
-              print("I am authenticated");
-            } catch (e, s) {
-              print(s);
-            }
+            print("I am authenticated");
+            context.router.popAndPush(const SignInRoute());
           },
           unauthenticated: (_) {
+            print("I am unauthenticated");
             context.router.popAndPush(const SignInRoute());
           },
         );
