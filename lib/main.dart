@@ -13,3 +13,6 @@ Future<void> main() async {
 
 // flutter clean; flutter pub get; flutter pub run build_runner build --delete-conflicting-outputs
 // flutter pub run build_runner watch --delete-conflicting-outputs
+
+//How to hide generated dart files in Android Studio
+//https://stackoverflow.com/questions/60787890/how-to-hide-generated-dart-files-in-android-studio

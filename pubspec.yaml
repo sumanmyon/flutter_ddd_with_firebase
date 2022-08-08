@@ -14,15 +14,17 @@ dependencies:
   equatable: ^2.0.3
   dartz: ^0.10.1
   flutter_bloc: 8.0.1
-  firebase_auth: 3.6.2
-  firebase_core: 1.20.0
-  google_sign_in: 5.4.0
   get_it: 7.2.0
   injectable: 1.5.3
   another_flushbar: 1.10.29
   uuid: 3.0.6
   auto_route: 4.2.1
   kt_dart: 0.10.0
+  google_sign_in: 5.4.0
+  firebase_auth: 3.6.2
+  firebase_core: 1.20.0
+  cloud_firestore: 3.4.3
+
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +35,7 @@ dev_dependencies:
   lint: ^1.10.0
   injectable_generator: 1.5.4
   auto_route_generator: 4.2.1
+  json_serializable: ^6.3.1
 
 
 flutter:

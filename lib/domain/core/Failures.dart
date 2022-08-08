@@ -34,7 +34,7 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
 // @freezed
 // abstract class ValueFailure<T> with _$ValueFailure<T> {
 //   const factory ValueFailure.auth(AuthValueFailure<T> f) = _Auth<T>;
-//   const factory ValueFailure.notes(NoteValueFailure<T> f) = _Notes<T>;
+//   const factory ValueFailure.note_watcher(NoteValueFailure<T> f) = _Notes<T>;
 // }
 //
 // @freezed
